@@ -1,0 +1,49 @@
+.BeatGrid {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.TransportControls {
+  margin-top: 20px;
+}
+
+.BeatRow {
+  padding: 10px;
+  background-color: #ccc;
+}
+
+.BeatRow:nth-child(even) {
+  background-color: #ddd;
+}
+
+.BeatButton {
+  display: inline-block;
+  margin-right: 10px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+}
+
+.BeatButton:last-child {
+  margin-right: 0;
+}
+
+.BeatButton[data-button-state=OFF] {
+  background-color: gray;
+}
+
+.BeatButton[data-button-state=ON] {
+  background-color: yellow;
+}
+
+.BeatButton[data-button-state=HARD] {
+  background-color: red;
+}
+
+.BeatButton[data-button-active=true] {
+  background-color: white;
+}
+
+.BeatButton[data-button-active=false] {
+  background-color: auto;
+}
