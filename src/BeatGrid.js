@@ -1,23 +1,18 @@
 import React, { Component } from 'react'
 import BeatRow from './BeatRow.js';
+import _ from 'lodash'
 
 class BeatGrid extends Component {
   constructor(props) {
     super()
 
+    let msPerMinute = 60000
+
     this.initialState = { currentBeat: 1, beatOfRow: 1, playing: false }
     this.state = this.initialState
+    this.divisionMs = msPerMinute / props.bpm / 4
 
-    this.divisionMs = 60000 / props.bpm / 4
-
-    this.rows = [
-      { id: 1 },
-      { id: 2 },
-      { id: 3 },
-      { id: 4 },
-      { id: 5 },
-      { id: 6 }
-    ]
+    this.rows = _.times(props.rows, (i) => ({ id: i }))
 
     this.play = this.play.bind(this)
     this.stop = this.stop.bind(this)
@@ -41,8 +36,8 @@ class BeatGrid extends Component {
 
   tick() {
     let currentBeat = this.state.currentBeat + 1
-    let beatOfRow = currentBeat % 16
-    if (beatOfRow === 0) { beatOfRow = 16 }
+    let beatOfRow = currentBeat % this.props.cols
+    if (beatOfRow === 0) { beatOfRow = this.props.cols }
 
     this.setState({ ...this.state,
                     currentBeat: currentBeat,
@@ -58,7 +53,8 @@ class BeatGrid extends Component {
           this.rows.map(row => {
             return (
               <BeatRow key={row.id}
-                       currentBeat={this.state.beatOfRow} />
+                       currentBeat={this.state.beatOfRow}
+                       beatCount={this.props.cols} />
             )
           })
         }

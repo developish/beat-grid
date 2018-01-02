@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <BeatGrid bpm={80} />
+        <BeatGrid rows={4} cols={16} bpm={80} />
       </div>
     );
   }
